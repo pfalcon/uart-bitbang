@@ -32,3 +32,14 @@ void putstr(char *s)
         uartbb_tx(*s++);
     }
 }
+
+void putdec(uint16_t v)
+{
+    char buf[6];
+    char *p = buf + 5;
+    do {
+        *--p = (v % 10) + '0';
+        v = v / 10;
+    } while (v > 0);
+    putstr(p);
+}
